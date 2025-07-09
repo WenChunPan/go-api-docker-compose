@@ -1,0 +1,10 @@
+data/
+
+# 忽略影片與大檔
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+*.exe
+*.out

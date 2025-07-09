@@ -13,14 +13,15 @@ import (
 // }
 
 type TODO struct {
-	Task string
-	Done bool
+	ID   int    `json:"id"`
+	Task string `json:"task"`
+	Done bool   `json:"done"`
 }
 
 // python list
 var globalTodo = []TODO{}
 
-func hw1() {
+func hw1_api() {
 	//post create / new task
 
 	// 初始化 Gin router
@@ -52,6 +53,9 @@ func hw1() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "無效的資料格式"})
 			return
 		}
+
+		//自動產生ID，從1開始
+		p.ID = len(globalTodo)
 		globalTodo = append(globalTodo, p)
 
 		// 回傳資料，當OK時回傳p的資料
@@ -114,5 +118,5 @@ func hw1() {
 		c.JSON(http.StatusOK, gin.H{"message": "任務已刪除"})
 	})
 	//啟動伺服器
-	r.Run(":8080")
+	r.Run(":8081")
 }
